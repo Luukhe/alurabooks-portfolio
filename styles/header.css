@@ -1,0 +1,202 @@
+.menu-hamburguer {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-image: url('../img/Menu.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-size: contain; */
+}
+
+/* --------------------------------------- */
+
+.container-botao:checked ~ .container-label > .menu-hamburguer {
+    background-image: url('../img/Menu-Aberto.svg');
+
+    /* LEMBRETE: Aqui me ocorreu uma dúvida, onde para fazer a mudança de imagem do background, usei a propriedade shorthand "background" com APENAS a URL, o que gerou um "bug" na imagem do botão, e usando a propriedade "background-image" FUNCIONAVA. O que acontecia, na verdade, é que ao usar o shorthand "background" com APENAS a URL, é como se as propriedades anteriores estivessem sendo REDECLARADAS quando foi usado o background, ou seja, estava apenas --REDECLARANDO AS PROPRIEDADES ANTERIORES COM NENHUM VALOR (a não ser a imagem), fazendo com que as outras propriedades estivessem sendo "resetadas" por conta do shorthand background que engloba todas as outras. -- */
+
+}
+
+.container-botao:checked ~ .container-label {
+    background: var(--azul-degrade);
+}
+
+/* ------------------------------------------ */
+
+header {
+    background-color: var(--branco);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+header > div {
+    display: flex;
+    align-items: center;
+    padding: 0 1em;
+}
+
+header img, .menu-hamburguer {
+    padding: 1em;
+}
+
+header > div > ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    width: 60vw;
+
+    /* left: 0; caso quiser mudar e deixar a lista colada à esquerda*/
+}
+
+header > div > input[type="checkbox"]:checked ~ ul {
+    display: block;
+}
+
+header > div > input[type="checkbox"] {
+    display: none;
+}
+
+header .lista-hamburguer-428 li {
+    padding: 1em;
+    background-color: var(--branco);
+}
+
+.titulo-lista {
+    color: var(--laranja);
+    font-weight: 700;
+}
+
+.lista-hamburguer-428 li a {
+    background: var(--azul-degrade);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+}
+
+/* --------- DISPLAY NONES DE DIFERENTES MEDIA QUERIES --------- */
+
+.alurabooks-titulo {
+    display: none;
+}
+
+.links-1024 {
+    display: none;
+}
+
+.texto-header-1728 {
+    display: none;
+}
+
+@media screen and (min-width:1024px) {
+
+    header div {
+        padding: 0 3em;
+    }
+
+    .container-icones-header img {
+        padding: 0 2em;
+    }
+
+    .alurabooks-titulo {
+        font-family: var(--fonte-secundaria);
+        font-weight: 400;
+        font-size: 30px;
+        display: block;
+    }
+
+    .alurabooks-negrito {
+        font-weight: 700;
+    }
+
+    .links-1024 {
+        display: flex;
+    }
+
+    .links-1024-botao:checked ~ .links-1024-label > .links-1024-categorias {
+        color: var(--branco);
+        background: var(--azul-degrade);
+    }
+
+    .links-1024 > li, .links-1024-categorias {
+        padding: 1em;
+        text-transform: uppercase;
+    }
+
+    .links-1024 > li > a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .links-1024-lista, .links-1024-botao {
+        display: none;
+    }
+
+    .links-1024-botao:checked ~ .links-1024-lista {
+        display: block;
+    }
+
+    .links-1024-lista {
+        position: absolute;
+        top: 100%;
+        background-color: var(--branco);
+    }
+
+    .links-1024-lista > li {
+        padding: 1em 2em;
+        text-transform: uppercase;
+        background: var(--azul-degrade);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .links-1024-lista > li:hover {
+        background: var(--azul-degrade);
+    }
+
+    .links-1024-lista > li:hover > a {
+        -webkit-text-fill-color: var(--branco);
+        text-decoration: none;
+    }
+
+    /* ----------------- DISPLAY NONES NÃO PERTENCENTES A ESTE MEDIA QUERY ------------------ */
+
+
+
+    .icone-favoritos {
+        display: none;
+    }
+
+    .menu-hamburguer {
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 1728px) {
+
+    .texto-header-1728 {
+        display: block;
+        font-size: 20px;
+    }
+
+    .container-icones-header-link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--preto);
+    } 
+
+    .container-icones-header img {
+        padding: 0 1em;
+    }
+
+    .links-1024 {
+        margin-right: auto;
+
+        /* Usando o margin right auto, a caixa contendo os links (a ul) ocupou o espaço inocupado à esquerda (espaço esse dado por ser um flex item, já que o header é display flex. Logo, desse jeito, consegue-se movimentar containers para os espaços dados pelo FLEX!!!!!!!!!!) */
+    }
+}
